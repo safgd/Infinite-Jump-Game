@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c41b7sywadhy0"]
 
 [ext_resource type="PackedScene" uid="uid://jac6makmpcx0" path="res://Scenes/cylinder_map.tscn" id="1_qxrlw"]
+[ext_resource type="PackedScene" uid="uid://ci46p3up4t600" path="res://Scenes/death_zone.tscn" id="3_3dryh"]
 [ext_resource type="PackedScene" uid="uid://bee4jed1q385p" path="res://Scenes/player.tscn" id="3_wrm1d"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3dryh"]
@@ -41,12 +42,16 @@ mesh = SubResource("CylinderMesh_1l0tm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Base" unique_id=272909533]
 shape = SubResource("CylinderShape3D_v158k")
 
-[node name="Player" parent="." unique_id=1079215216 node_paths=PackedStringArray("map_to_rotate") instance=ExtResource("3_wrm1d")]
+[node name="Player" parent="." unique_id=1079215216 node_paths=PackedStringArray("map_to_rotate", "base") instance=ExtResource("3_wrm1d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6617432, 5.6999598)
 map_to_rotate = NodePath("../Cylinder Map")
+base = NodePath("../Base")
 speed = 50.0
 jump_velocity = 9.0
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=2016564791]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.252278)
 size = 19.965
+
+[node name="Death Zone" parent="." unique_id=1344778906 instance=ExtResource("3_3dryh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.4180765, 0)
