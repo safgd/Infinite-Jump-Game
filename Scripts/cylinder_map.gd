@@ -10,6 +10,12 @@ var platform_tokens = 20
 
 var last_plat: Platform
 
+# unused so far
+var difficulty_level: int = 0
+
+@export var breakable_condition_value: float = 0.1
+@export var movable_condition_value: float = 0.1
+
 func _ready() -> void:
 	for i: int in range(10):
 		
@@ -44,7 +50,12 @@ func add_new_platform()->void:
 	new_rotation = floori(new_rotation) % 360
 	last_plat.rotation_degrees.y = new_rotation
 	
-	if randf() < 0.3:
+	if randf() < movable_condition_value:
 		last_plat.start_moving()
-	last_plat.breakable = true
+	if randf() < breakable_condition_value:
+		last_plat.breakable = true
 	
+func increase_difficulty_level()->void:
+	difficulty_level += 1
+	breakable_condition_value = clampf(breakable_condition_value, breakable_condition_value + 0.05, 1.0)
+	movable_condition_value = clampf(movable_condition_value, movable_condition_value + 0.05, 1.0)
