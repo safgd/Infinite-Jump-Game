@@ -23,6 +23,9 @@ func _physics_process(delta: float) -> void:
 		started = true
 		if base:
 			base.call_deferred("queue_free")
+	# for debugging
+	elif Input.is_action_just_pressed("ui_accept"):
+		jump()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -36,9 +39,6 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 	
-	if global_position.y >= 10:
-		global_position.y -= 5.0
-		map_to_rotate.shift_platforms(Vector3(0, -5, 0))
 
 func jump()->void:
 	velocity.y = jump_velocity

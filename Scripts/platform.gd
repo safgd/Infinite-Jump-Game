@@ -5,6 +5,7 @@ var move_tween: Tween
 @export var move_dist: float = 4.0
 @export var loop_duration: float = 2.0
 @export var breakable: bool = false
+var parent_map: Map
 
 func start_moving()->void:
 	move_tween = get_tree().create_tween().set_loops()
@@ -17,5 +18,10 @@ func _exit_tree() -> void:
 		move_tween.stop()
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
-	if body is Player:
-		call_deferred("queue_free")
+	if breakable and body is Player:
+		destroy()
+		
+
+func destroy()->void:
+	parent_map.platform_tokens += 1
+	call_deferred("queue_free")
