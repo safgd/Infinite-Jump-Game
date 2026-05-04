@@ -1,3 +1,4 @@
+class_name Map
 extends Node3D
 
 @export var platform_scene: PackedScene
@@ -22,3 +23,8 @@ func spawn_platform(pos_y: float)->Node3D:
 	platforms.add_child(plat)
 	plat.global_position.y = pos_y
 	return plat
+
+func shift_platforms(offset: Vector3)->void:
+	for child: Node in platforms.get_children():
+		if child is Node3D:
+			(child as Node3D).global_position += offset

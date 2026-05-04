@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var map_to_rotate: Node3D
+@export var map_to_rotate: Map
 
 @export var speed: float = 5.0
 @export var jump_velocity = 4.5
@@ -26,3 +26,8 @@ func _physics_process(delta: float) -> void:
 
 
 	move_and_slide()
+	
+	if global_position.y >= 10:
+		global_position.y -= 5.0
+		map_to_rotate.shift_platforms(Vector3(0, -5, 0))
+		print("shifted")

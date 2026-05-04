@@ -22,6 +22,3 @@ platform_scene = ExtResource("2_q1o56")
 mesh = SubResource("CylinderMesh_ndhib")
 
 [node name="Platforms" type="Node3D" parent="." unique_id=415740971]
-
-[node name="Platform" parent="Platforms" unique_id=221532819 instance=ExtResource("2_q1o56")]
-collision_layer = 3

@@ -48,4 +48,5 @@ speed = 50.0
 jump_velocity = 9.0
 
 [node name="Camera3D" type="Camera3D" parent="Player" unique_id=2016564791]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25.143364)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.252278)
+size = 19.965
