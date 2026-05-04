@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://jac6makmpcx0"]
+
+[ext_resource type="Script" uid="uid://0qvkp1iuherx" path="res://Scripts/cylinder_map.gd" id="1_q48st"]
+[ext_resource type="PackedScene" uid="uid://ylpbad5s4hr1" path="res://Scenes/platform.tscn" id="2_q1o56"]
+[ext_resource type="Texture2D" uid="uid://biewudbgfukwg" path="res://icon.svg" id="3_q1o56"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_te7k0"]
+albedo_texture = ExtResource("3_q1o56")
+uv1_triplanar = true
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ndhib"]
+material = SubResource("StandardMaterial3D_te7k0")
+top_radius = 5.0
+bottom_radius = 5.0
+height = 50.0
+
+[node name="Cylinder Map" type="Node3D" unique_id=1029750433]
+script = ExtResource("1_q48st")
+platform_scene = ExtResource("2_q1o56")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=961004207]
+mesh = SubResource("CylinderMesh_ndhib")
+
+[node name="Platforms" type="Node3D" parent="." unique_id=415740971]
+
+[node name="Platform" parent="Platforms" unique_id=221532819 instance=ExtResource("2_q1o56")]
