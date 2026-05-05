@@ -3,6 +3,7 @@ extends CharacterBody3D
 
 @export var map_to_rotate: Map
 @export var base: Node3D
+@export var ui: Game_UI
 
 @export var speed: float = 5.0
 @export var jump_velocity = 4.5
@@ -44,6 +45,7 @@ func _physics_process(delta: float) -> void:
 				collectable_use_timer.start()
 				
 		usable_collectable = Collectable.Type.EMPTY
+		ui.set_collectable(Collectable.Type.EMPTY)
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -61,6 +63,7 @@ func jump()->void:
 
 func pickup_collectable(type: Collectable.Type)->void:
 	usable_collectable = type
+	ui.set_collectable(type)
 
 
 func _on_collectable_use_timer_timeout() -> void:

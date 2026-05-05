@@ -4,8 +4,29 @@
 
 [node name="Game UI" type="CanvasLayer" unique_id=531651677]
 script = ExtResource("1_gek4i")
+collectables_textures = Dictionary[int, Texture]({
+0: null,
+1: null,
+2: null
+})
+collectables_names = Dictionary[int, String]({
+0: "",
+1: "1 Extra Jump",
+2: "Low Gravity"
+})
+
+[node name="Collectable VBox" type="VBoxContainer" parent="." unique_id=637718823]
+offset_right = 85.0
+offset_bottom = 85.0
+
+[node name="Collectable TextureRect" type="TextureRect" parent="Collectable VBox" unique_id=118644717]
+layout_mode = 2
+
+[node name="Collectable Label" type="Label" parent="Collectable VBox" unique_id=396445348]
+layout_mode = 2
 
 [node name="Blending ColorRect" type="ColorRect" parent="." unique_id=676587615]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -6,6 +6,10 @@ signal blend_out_finished
 @onready var blending_color_rect: ColorRect = $"Blending ColorRect"
 @export var blend_duration: float = 0.5 
 var tween: Tween
+@onready var collectable_texture_rect: TextureRect = $"Collectable VBox/Collectable TextureRect"
+@onready var collectable_label: Label = $"Collectable VBox/Collectable Label"
+@export var collectables_textures: Dictionary[Collectable.Type, Texture]
+@export var collectables_names: Dictionary[Collectable.Type, String]
 
 func _ready() -> void:
 	blend_in_game()
@@ -30,3 +34,7 @@ func _on_blend_out_tween_finished()->void:
 func _exit_tree() -> void:
 	if tween:
 		tween.stop()
+
+func set_collectable(type: Collectable.Type)->void:
+	collectable_texture_rect.texture = collectables_textures[type]
+	collectable_label.text = collectables_names[type]

@@ -44,10 +44,11 @@ mesh = SubResource("CylinderMesh_1l0tm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Base" unique_id=272909533]
 shape = SubResource("CylinderShape3D_v158k")
 
-[node name="Player" parent="." unique_id=1079215216 node_paths=PackedStringArray("map_to_rotate", "base") instance=ExtResource("3_wrm1d")]
+[node name="Player" parent="." unique_id=1079215216 node_paths=PackedStringArray("map_to_rotate", "base", "ui") instance=ExtResource("3_wrm1d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6617432, 5.6999598)
 map_to_rotate = NodePath("../Cylinder Map")
 base = NodePath("../Base")
+ui = NodePath("../Game UI")
 speed = 50.0
 jump_velocity = 9.0
 
