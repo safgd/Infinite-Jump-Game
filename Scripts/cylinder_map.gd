@@ -24,6 +24,7 @@ var difficulty_level: int = 0:
 		difficulty_level = clampi(value, 0, max_int)
 
 @export_category("Random Factors")
+@export var max_rate_for_non_static_platforms: float = 0.7
 @export var special_platform_spawn_rate_increase: float = 0.02
 ## chance for any platform to be breakable
 @export var breakable_condition_value: float = 0.1
@@ -97,5 +98,5 @@ func add_new_platform()->void:
 func increase_difficulty_level()->void:
 	difficulty_level += 1
 	breakable_condition_value = clampf(breakable_condition_value, breakable_condition_value + special_platform_spawn_rate_increase, 1.0)
-	movable_condition_value = clampf(movable_condition_value, movable_condition_value + special_platform_spawn_rate_increase, 1.0)
-	flipping_condition_value = clampf(flipping_condition_value, movable_condition_value + special_platform_spawn_rate_increase, 1.0)
+	movable_condition_value = clampf(movable_condition_value, movable_condition_value + special_platform_spawn_rate_increase, max_rate_for_non_static_platforms)
+	flipping_condition_value = clampf(flipping_condition_value, movable_condition_value + special_platform_spawn_rate_increase, max_rate_for_non_static_platforms)
