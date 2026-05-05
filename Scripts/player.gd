@@ -1,21 +1,21 @@
 class_name Player
 extends CharacterBody3D
 
+@export_category("Setup")
 @export var map_to_rotate: Map
 @export var base: Node3D
 @export var ui: Game_UI
 
+@export_category("Movement")
 @export var speed: float = 5.0
 @export var jump_velocity = 4.5
-var started: bool = false
 @export var gravity_force: float = -12
 @export var lowered_gravity_force: float = -6
 
+var started: bool = false
 var usable_collectable: Collectable.Type
 var active_collectable: Collectable.Type
 @onready var collectable_use_timer: Timer = $"Collectable Use Timer"
-
-
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

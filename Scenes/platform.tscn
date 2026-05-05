@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://q780r2dxcbtc" path="res://Scripts/platform.gd" id="1_1rc8e"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rc8e"]
+albedo_color = Color(0.92224, 0.2513202, 0.13446787, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_ndhib"]
 size = Vector3(2, 0.2, 4)
 
@@ -10,10 +13,11 @@ size = Vector3(2, 0.2, 4)
 
 [node name="Platform" type="Area3D" unique_id=551179388]
 script = ExtResource("1_1rc8e")
+breakable_material = SubResource("StandardMaterial3D_1rc8e")
 move_dist = 0.2
 flip_angle_distance = 0.5
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=73556812]
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=73556812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 mesh = SubResource("BoxMesh_ndhib")
 
