@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bxts7e6b3p2jk"]
+
+[ext_resource type="Script" uid="uid://cg5icy5iel4d5" path="res://Scripts/game_ui.gd" id="1_gek4i"]
+
+[node name="Game UI" type="CanvasLayer" unique_id=531651677]
+script = ExtResource("1_gek4i")
+
+[node name="Blending ColorRect" type="ColorRect" parent="." unique_id=676587615]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

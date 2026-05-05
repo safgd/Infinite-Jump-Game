@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://ci46p3up4t600" path="res://Scenes/death_zone.tscn" id="3_3dryh"]
 [ext_resource type="PackedScene" uid="uid://bee4jed1q385p" path="res://Scenes/player.tscn" id="3_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://dbnunemynkeps" path="res://Scenes/world_reshift_zone.tscn" id="4_3dryh"]
+[ext_resource type="PackedScene" uid="uid://bxts7e6b3p2jk" path="res://Scenes/game_ui.tscn" id="5_wowpa"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3dryh"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -54,9 +55,12 @@ jump_velocity = 9.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12.252278)
 size = 19.965
 
-[node name="Death Zone" parent="." unique_id=1344778906 instance=ExtResource("3_3dryh")]
+[node name="Death Zone" parent="." unique_id=1344778906 node_paths=PackedStringArray("game_ui") instance=ExtResource("3_3dryh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.4180765, 0)
+game_ui = NodePath("../Game UI")
 
 [node name="World Reshift Zone" parent="." unique_id=328537765 node_paths=PackedStringArray("map") instance=ExtResource("4_3dryh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.467274, 0)
 map = NodePath("../Cylinder Map")
+
+[node name="Game UI" parent="." unique_id=531651677 instance=ExtResource("5_wowpa")]
