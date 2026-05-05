@@ -17,6 +17,11 @@ var usable_collectable: Collectable.Type
 var active_collectable: Collectable.Type
 @onready var collectable_use_timer: Timer = $"Collectable Use Timer"
 
+@onready var jump_sound_player: AudioStreamPlayer = $"Jump Sound Player"
+@onready var collectable_pickup_sound_player: AudioStreamPlayer = $"Collectable Pickup Sound Player"
+@onready var item_use_sound_player: AudioStreamPlayer = $"Item Use Sound Player"
+
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	
@@ -50,6 +55,8 @@ func _physics_process(delta: float) -> void:
 				active_collectable = Collectable.Type.FREEZE
 				map_to_rotate.freeze_platforms(true)
 				collectable_use_timer.start()
+		
+		item_use_sound_player.play()
 				
 		usable_collectable = Collectable.Type.EMPTY
 		ui.set_collectable(Collectable.Type.EMPTY)
@@ -68,10 +75,12 @@ func _physics_process(delta: float) -> void:
 
 func jump()->void:
 	velocity.y = jump_velocity
+	jump_sound_player.play()
 
 func pickup_collectable(type: Collectable.Type)->void:
 	usable_collectable = type
 	ui.set_collectable(type)
+	collectable_pickup_sound_player.play()
 
 
 func _on_collectable_use_timer_timeout() -> void:

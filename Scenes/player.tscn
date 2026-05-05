@@ -1,10 +1,28 @@
 [gd_scene format=3 uid="uid://bee4jed1q385p"]
 
 [ext_resource type="Script" uid="uid://dhvrkqe8pr6jp" path="res://Scripts/player.gd" id="1_v0iea"]
+[ext_resource type="AudioStream" uid="uid://8d7ad7qjo1nv" path="res://Assets/Sounds/SFX_Jump_42.wav" id="2_cvnsp"]
+[ext_resource type="AudioStream" uid="uid://dgi7pa6xe8nv6" path="res://Assets/Sounds/SFX_Jump_10.wav" id="3_6t5aa"]
+[ext_resource type="AudioStream" uid="uid://cp18jp82olkly" path="res://Assets/Sounds/SFX_Jump_04.wav" id="4_vgqql"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_f60y1"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_v0iea"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_cvnsp"]
+random_pitch = 1.0386192
+streams_count = 1
+stream_0/stream = ExtResource("2_cvnsp")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vgqql"]
+random_pitch = 1.062466
+streams_count = 1
+stream_0/stream = ExtResource("3_6t5aa")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fkybt"]
+random_pitch = 1.046508
+streams_count = 1
+stream_0/stream = ExtResource("4_vgqql")
 
 [node name="Player" type="CharacterBody3D" unique_id=1079215216]
 axis_lock_linear_x = true
@@ -20,5 +38,17 @@ shape = SubResource("SphereShape3D_v0iea")
 [node name="Collectable Use Timer" type="Timer" parent="." unique_id=1926925412]
 wait_time = 5.0
 one_shot = true
+
+[node name="Jump Sound Player" type="AudioStreamPlayer" parent="." unique_id=2144792911]
+stream = SubResource("AudioStreamRandomizer_cvnsp")
+volume_db = -2.781
+max_polyphony = 2
+
+[node name="Collectable Pickup Sound Player" type="AudioStreamPlayer" parent="." unique_id=2040943236]
+stream = SubResource("AudioStreamRandomizer_vgqql")
+
+[node name="Item Use Sound Player" type="AudioStreamPlayer" parent="." unique_id=982940085]
+stream = SubResource("AudioStreamRandomizer_fkybt")
+volume_db = -22.246
 
 [connection signal="timeout" from="Collectable Use Timer" to="." method="_on_collectable_use_timer_timeout"]
