@@ -17,4 +17,4 @@ func _on_area_entered(area: Area3D) -> void:
 
 func _on_death_screen_finished()->void:
 	print("Game Over")
-	get_tree().call_deferred("reload_current_scene")
+	Game_Manager.reload_game()

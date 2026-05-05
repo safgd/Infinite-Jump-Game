@@ -46,6 +46,7 @@ max_polyphony = 2
 
 [node name="Collectable Pickup Sound Player" type="AudioStreamPlayer" parent="." unique_id=2040943236]
 stream = SubResource("AudioStreamRandomizer_vgqql")
+volume_db = -13.904
 
 [node name="Item Use Sound Player" type="AudioStreamPlayer" parent="." unique_id=982940085]
 stream = SubResource("AudioStreamRandomizer_fkybt")

@@ -1,6 +1,8 @@
 class_name Map
 extends Node3D
 
+const max_int: int = 9223372036854775807
+
 @export var platform_scene: PackedScene
 @export var collectable_scenes: Array[PackedScene]
 ## Defines the circle where platforms are spawned on
@@ -17,7 +19,9 @@ var platform_tokens = 20
 
 var last_plat: Platform
 
-var difficulty_level: int = 0
+var difficulty_level: int = 0:
+	set(value):
+		difficulty_level = clampi(value, 0, max_int)
 
 @export_category("Random Factors")
 @export var special_platform_spawn_rate_increase: float = 0.02
