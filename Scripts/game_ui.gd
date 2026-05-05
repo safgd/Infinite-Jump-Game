@@ -7,6 +7,7 @@ signal blend_out_finished
 @onready var blending_color_rect: ColorRect = $"Blending ColorRect"
 @export var initial_blend_clear_duration: float = 0.5 
 @export var blend_clear_duration: float = 0.5 
+const skip_blend_in_duration: float = 0.1
 @export var blend_black_duration: float = 0.5 
 var tween: Tween
 @onready var collectable_texture_rect: TextureRect = $"Collectable VBox/Collectable TextureRect"
@@ -19,6 +20,8 @@ func _ready() -> void:
 
 func hide_start_prompt()->void:
 	start_v_box.hide()
+	skip_blend_in()
+	Game_Manager.remove_precash_nodes_early()
 
 func blend_in_game()->void:
 	if tween:
@@ -29,7 +32,14 @@ func blend_in_game()->void:
 		Game_Manager.is_first_load = false
 	else:
 		tween.tween_property(blending_color_rect, "color:a", 0, blend_clear_duration)
-		
+
+func skip_blend_in()->void:
+	if tween:
+		tween.stop()
+	else:
+		return
+	tween = get_tree().create_tween()
+	tween.tween_property(blending_color_rect, "color:a", 0, skip_blend_in_duration)
 
 func blend_out_screen()->void:
 	if tween:
