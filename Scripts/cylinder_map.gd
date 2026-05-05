@@ -18,6 +18,7 @@ var difficulty_level: int = 0
 
 @export var breakable_condition_value: float = 0.1
 @export var movable_condition_value: float = 0.1
+@export var flipping_condition_value: float = 0.6
 @export var collectable_spawn_value: float = 0.1
 
 func _ready() -> void:
@@ -63,6 +64,9 @@ func add_new_platform()->void:
 	
 	if randf() < movable_condition_value:
 		new_plat.start_moving()
+	elif randf() < flipping_condition_value:
+		new_plat.start_flipping()
+		print("flipping platform spawned: " + str(new_plat.name))
 	elif randf() < collectable_spawn_value:
 		var collectable: Collectable = collectable_scenes[randi() % collectable_scenes.size()].instantiate()
 		collectables.add_child(collectable)

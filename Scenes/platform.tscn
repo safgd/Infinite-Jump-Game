@@ -11,6 +11,7 @@ size = Vector3(2, 0.2, 4)
 [node name="Platform" type="Area3D" unique_id=551179388]
 script = ExtResource("1_1rc8e")
 move_dist = 0.2
+flip_angle_distance = 0.5
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=73556812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
@@ -23,5 +24,8 @@ shape = SubResource("BoxShape3D_tvo2v")
 [node name="Collectable Spawn Slot" type="Marker3D" parent="." unique_id=296592877]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.047984004, 0.6213157, 5.848561)
 
+[node name="Flip Timer" type="Timer" parent="." unique_id=1379509464]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Flip Timer" to="." method="_on_flip_timer_timeout"]
