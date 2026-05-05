@@ -1,5 +1,5 @@
 class_name Platform
-extends StaticBody3D
+extends Area3D
 
 var move_tween: Tween
 @export var move_dist: float = 4.0
@@ -17,11 +17,15 @@ func _exit_tree() -> void:
 	if move_tween:
 		move_tween.stop()
 
-func _on_area_3d_body_exited(body: Node3D) -> void:
-	if breakable and body is Player:
-		destroy()
-		
-
 func destroy()->void:
 	parent_map.platform_tokens += 1
 	call_deferred("queue_free")
+
+
+func _on_body_entered(body: Node3D) -> void:
+	if body is Player:
+		(body as Player).jump()
+
+func _on_body_exited(body: Node3D) -> void:
+	if breakable and body is Player and body.global_position.y > global_position.y:
+		destroy()

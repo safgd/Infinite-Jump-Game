@@ -30,7 +30,7 @@ func add_new_platform()->void:
 	if platform_tokens > 0:
 		platform_tokens -= 1
 	else:
-		print("no platform tokens left")
+		#print("no platform tokens left")
 		return
 		
 	if last_plat:
@@ -40,6 +40,7 @@ func add_new_platform()->void:
 	
 	
 	platforms.add_child(last_plat)
+	last_plat.breakable = false
 	last_plat.parent_map = self
 	last_plat.global_position.y += plat_dist_y
 	var new_rotation: float = last_plat.rotation_degrees.y

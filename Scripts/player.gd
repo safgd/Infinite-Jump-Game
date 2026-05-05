@@ -7,15 +7,20 @@ extends CharacterBody3D
 @export var speed: float = 5.0
 @export var jump_velocity = 4.5
 var started: bool = false
+@export var gravity_force: float = -12
+var gravity: Vector3
 
+func _ready() -> void:
+	gravity = Vector3(0, gravity_force, 0)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		velocity += gravity * delta
 	elif started:
-		jump()
+		#jump()
+		pass
 
 	# Handle jump.
 	if not started and Input.is_action_just_pressed("ui_accept"):
