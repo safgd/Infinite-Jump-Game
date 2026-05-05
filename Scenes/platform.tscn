@@ -1,9 +1,7 @@
 [gd_scene format=3 uid="uid://ylpbad5s4hr1"]
 
 [ext_resource type="Script" uid="uid://q780r2dxcbtc" path="res://Scripts/platform.gd" id="1_1rc8e"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1rc8e"]
-albedo_color = Color(0.92224, 0.2513202, 0.13446787, 1)
+[ext_resource type="Material" uid="uid://m1jpjinb2768" path="res://Assets/Materials/breakable.tres" id="2_n5262"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ndhib"]
 size = Vector3(2, 0.2, 4)
@@ -13,7 +11,7 @@ size = Vector3(2, 0.2, 4)
 
 [node name="Platform" type="Area3D" unique_id=551179388]
 script = ExtResource("1_1rc8e")
-breakable_material = SubResource("StandardMaterial3D_1rc8e")
+breakable_material = ExtResource("2_n5262")
 move_dist = 0.2
 flip_angle_distance = 0.5
 

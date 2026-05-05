@@ -5,7 +5,9 @@ signal blend_out_finished
 @onready var start_v_box: VBoxContainer = $"Start VBox"
 
 @onready var blending_color_rect: ColorRect = $"Blending ColorRect"
-@export var blend_duration: float = 0.5 
+@export var initial_blend_clear_duration: float = 0.5 
+@export var blend_clear_duration: float = 0.5 
+@export var blend_black_duration: float = 0.5 
 var tween: Tween
 @onready var collectable_texture_rect: TextureRect = $"Collectable VBox/Collectable TextureRect"
 @onready var collectable_label: Label = $"Collectable VBox/Collectable Label"
@@ -22,13 +24,18 @@ func blend_in_game()->void:
 	if tween:
 		tween.stop()
 	tween = get_tree().create_tween()
-	tween.tween_property(blending_color_rect, "color:a", 0, blend_duration)
+	if Game_Manager.is_first_load:
+		tween.tween_property(blending_color_rect, "color:a", 0, initial_blend_clear_duration)
+		Game_Manager.is_first_load = false
+	else:
+		tween.tween_property(blending_color_rect, "color:a", 0, blend_clear_duration)
+		
 
 func blend_out_screen()->void:
 	if tween:
 		tween.stop()
 	tween = get_tree().create_tween()
-	tween.tween_property(blending_color_rect, "color:a", 1, blend_duration)
+	tween.tween_property(blending_color_rect, "color:a", 1, blend_black_duration)
 	
 	tween.finished.connect(_on_blend_out_tween_finished)
 

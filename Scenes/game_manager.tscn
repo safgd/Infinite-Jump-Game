@@ -3,6 +3,11 @@
 [ext_resource type="Script" uid="uid://2xebb54ygsdp" path="res://Scripts/game_manager.gd" id="1_e5fcp"]
 [ext_resource type="PackedScene" uid="uid://c41b7sywadhy0" path="res://Scenes/game.tscn" id="2_mmt5l"]
 [ext_resource type="AudioStream" uid="uid://bpyriqdwacjmh" path="res://Assets/Sounds/10._jester_theme.mp3" id="2_sq00h"]
+[ext_resource type="PackedScene" uid="uid://dqsu7atxrighm" path="res://Scenes/Collectables/freeze_collectable.tscn" id="4_yqty0"]
+[ext_resource type="PackedScene" uid="uid://8w2kj46kbuh" path="res://Scenes/Collectables/extra_jump_collectable.tscn" id="5_71d4j"]
+[ext_resource type="PackedScene" uid="uid://cme4kru38noax" path="res://Scenes/Collectables/low_gravity_collectable.tscn" id="6_efn8y"]
+[ext_resource type="PackedScene" uid="uid://ylpbad5s4hr1" path="res://Scenes/platform.tscn" id="7_efn8y"]
+[ext_resource type="Material" uid="uid://m1jpjinb2768" path="res://Assets/Materials/breakable.tres" id="8_i4mau"]
 
 [node name="Game Manager" type="Node" unique_id=1480703814]
 script = ExtResource("1_e5fcp")
@@ -12,3 +17,32 @@ game_scene = ExtResource("2_mmt5l")
 stream = ExtResource("2_sq00h")
 volume_db = -12.791
 autoplay = true
+
+[node name="Shader Precash Nodes" type="Node" parent="." unique_id=809060795]
+
+[node name="Freeze Collectable" parent="Shader Precash Nodes" unique_id=1373891268 instance=ExtResource("4_yqty0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.661144, 0, 0)
+
+[node name="Extra Jump Collectable" parent="Shader Precash Nodes" unique_id=1684583130 instance=ExtResource("5_71d4j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.140303, 0, 0)
+
+[node name="Low Gravity Collectable" parent="Shader Precash Nodes" unique_id=656705474 instance=ExtResource("6_efn8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.134605, 0, 0)
+
+[node name="Platform" parent="Shader Precash Nodes" unique_id=551179388 instance=ExtResource("7_efn8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8188806, 0, 0)
+
+[node name="Platform2" parent="Shader Precash Nodes" unique_id=1615932913 instance=ExtResource("7_efn8y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.3325205, 0, 0)
+
+[node name="Mesh" parent="Shader Precash Nodes/Platform2" index="0" unique_id=73556812]
+surface_material_override/0 = ExtResource("8_i4mau")
+
+[node name="Timer" type="Timer" parent="." unique_id=568370097]
+wait_time = 0.5
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+
+[editable path="Shader Precash Nodes/Platform2"]
