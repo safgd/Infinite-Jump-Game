@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 
 	# Handle jump.
 	if not started and Input.is_action_just_pressed("ui_accept"):
+		ui.hide_start_prompt()
 		jump()
 		started = true
 		if base:
@@ -49,11 +50,12 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	input_dir.y = 0.0
-	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		map_to_rotate.rotation_degrees.y +=  -direction.x * speed * delta
+	if started:
+		var input_dir := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		input_dir.y = 0.0
+		var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if direction:
+			map_to_rotate.rotation_degrees.y +=  -direction.x * speed * delta
 
 	move_and_slide()
 	

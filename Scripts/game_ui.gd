@@ -2,6 +2,7 @@ class_name Game_UI
 extends CanvasLayer
 
 signal blend_out_finished
+@onready var start_v_box: VBoxContainer = $"Start VBox"
 
 @onready var blending_color_rect: ColorRect = $"Blending ColorRect"
 @export var blend_duration: float = 0.5 
@@ -13,6 +14,9 @@ var tween: Tween
 
 func _ready() -> void:
 	blend_in_game()
+
+func hide_start_prompt()->void:
+	start_v_box.hide()
 
 func blend_in_game()->void:
 	if tween:
