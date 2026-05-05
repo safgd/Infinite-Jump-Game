@@ -13,12 +13,14 @@ script = ExtResource("1_gek4i")
 collectables_textures = Dictionary[int, Texture]({
 0: null,
 1: null,
-2: null
+2: null,
+3: null
 })
 collectables_names = Dictionary[int, String]({
 0: "",
 1: "1 Extra Jump",
-2: "Low Gravity"
+2: "Low Gravity",
+3: "Freeze Time"
 })
 
 [node name="Start VBox" type="VBoxContainer" parent="." unique_id=867180432]

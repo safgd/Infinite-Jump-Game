@@ -42,7 +42,13 @@ func _physics_process(delta: float) -> void:
 			Collectable.Type.EXTRA_JUMP:
 				jump()
 			Collectable.Type.LOW_GRAVITY:
+				_on_collectable_use_timer_timeout()
 				active_collectable = Collectable.Type.LOW_GRAVITY
+				collectable_use_timer.start()
+			Collectable.Type.FREEZE:
+				_on_collectable_use_timer_timeout()
+				active_collectable = Collectable.Type.FREEZE
+				map_to_rotate.freeze_platforms(true)
 				collectable_use_timer.start()
 				
 		usable_collectable = Collectable.Type.EMPTY
@@ -69,4 +75,6 @@ func pickup_collectable(type: Collectable.Type)->void:
 
 
 func _on_collectable_use_timer_timeout() -> void:
+	if active_collectable == Collectable.Type.FREEZE:
+		map_to_rotate.freeze_platforms(false)
 	active_collectable = Collectable.Type.EMPTY

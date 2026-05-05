@@ -2,7 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bk7tfhxun24c0" path="res://Scenes/Collectables/collectable_template.tscn" id="1_xio22"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xio22"]
+albedo_color = Color(0.41651386, 0.00012692079, 0.41970646, 1)
+
 [sub_resource type="PrismMesh" id="PrismMesh_bfkqq"]
+material = SubResource("StandardMaterial3D_xio22")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_kkegf"]
 radius = 0.8481587

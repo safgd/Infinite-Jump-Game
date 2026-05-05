@@ -4,7 +4,11 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vqeoi"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqa53"]
+albedo_color = Color(0, 0.8422529, 0.47524703, 1)
+
 [sub_resource type="BoxMesh" id="BoxMesh_ixgh3"]
+material = SubResource("StandardMaterial3D_yqa53")
 
 [node name="Extra Jump Collectable" unique_id=1373891268 instance=ExtResource("1_yqa53")]
 type = 1

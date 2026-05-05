@@ -15,6 +15,7 @@ var breakable: bool = false:
 var move_tween: Tween
 ## similar to move_dist
 @export var flip_angle_distance: float = 2.0
+var can_flip: bool = false
 var flipped: bool = false
 
 var parent_map: Map
@@ -23,6 +24,7 @@ var parent_map: Map
 
 func reset()->void:
 	breakable = false
+	can_flip = false
 	mesh.set_surface_override_material(0, null)
 
 func start_moving()->void:
@@ -32,6 +34,7 @@ func start_moving()->void:
 	move_tween.tween_property(self, "rotation:y", start_rotation - move_dist, loop_duration / 2.0)
 
 func start_flipping()->void:
+	can_flip = true
 	flip_timer.start()
 
 func _exit_tree() -> void:
@@ -56,3 +59,15 @@ func _on_flip_timer_timeout() -> void:
 	else:
 		rotation.y -= flip_angle_distance
 	flipped = not flipped
+
+func freeze_platform(freeze: bool)->void:
+	if freeze:
+		if move_tween:
+			move_tween.pause()
+		flip_timer.stop()
+	else:
+		if move_tween:
+			move_tween.play()
+		if can_flip:
+			flip_timer.start()
+	

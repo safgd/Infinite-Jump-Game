@@ -4,7 +4,8 @@ extends Area3D
 enum Type{
 	EMPTY,
 	EXTRA_JUMP,
-	LOW_GRAVITY
+	LOW_GRAVITY,
+	FREEZE
 }
 @export var type: Type
 # extra safe guard, because the world shift can cause unintended pickups

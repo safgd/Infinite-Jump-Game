@@ -17,10 +17,10 @@ var platform_tokens = 20
 
 var last_plat: Platform
 
-# unused so far, could be used to track progress
 var difficulty_level: int = 0
 
 @export_category("Random Factors")
+@export var special_platform_spawn_rate_increase: float = 0.02
 ## chance for any platform to be breakable
 @export var breakable_condition_value: float = 0.1
 ## chance for any platform to be a moving one
@@ -43,6 +43,11 @@ func shift_platforms_and_collectables(offset: Vector3)->void:
 		if child is Collectable:
 			(child as Collectable).global_position += offset
 			
+
+func freeze_platforms(freeze: bool)->void:
+	for child: Node in platforms.get_children():
+		if child is Platform:
+			(child as Platform).freeze_platform(freeze)
 
 func add_new_platform()->void:
 	if platform_tokens > 0:
@@ -74,7 +79,7 @@ func add_new_platform()->void:
 		new_plat.start_moving()
 	elif randf() < flipping_condition_value:
 		new_plat.start_flipping()
-	elif randf() < collectable_spawn_value:
+	elif difficulty_level > 0 and randf() < collectable_spawn_value:
 		var collectable: Collectable = collectable_scenes[randi() % collectable_scenes.size()].instantiate()
 		collectables.add_child(collectable)
 		collectable.global_position = new_plat.collectable_spawn_slot.global_position
@@ -87,6 +92,6 @@ func add_new_platform()->void:
 	
 func increase_difficulty_level()->void:
 	difficulty_level += 1
-	breakable_condition_value = clampf(breakable_condition_value, breakable_condition_value + 0.05, 1.0)
-	movable_condition_value = clampf(movable_condition_value, movable_condition_value + 0.05, 1.0)
-	flipping_condition_value = clampf(flipping_condition_value, movable_condition_value + 0.05, 1.0)
+	breakable_condition_value = clampf(breakable_condition_value, breakable_condition_value + special_platform_spawn_rate_increase, 1.0)
+	movable_condition_value = clampf(movable_condition_value, movable_condition_value + special_platform_spawn_rate_increase, 1.0)
+	flipping_condition_value = clampf(flipping_condition_value, movable_condition_value + special_platform_spawn_rate_increase, 1.0)

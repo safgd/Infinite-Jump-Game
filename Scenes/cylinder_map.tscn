@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://biewudbgfukwg" path="res://icon.svg" id="3_q1o56"]
 [ext_resource type="PackedScene" uid="uid://8w2kj46kbuh" path="res://Scenes/Collectables/extra_jump_collectable.tscn" id="3_shrax"]
 [ext_resource type="PackedScene" uid="uid://cme4kru38noax" path="res://Scenes/Collectables/low_gravity_collectable.tscn" id="4_ih5fc"]
+[ext_resource type="PackedScene" uid="uid://dqsu7atxrighm" path="res://Scenes/Collectables/freeze_collectable.tscn" id="5_ih5fc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_te7k0"]
 albedo_texture = ExtResource("3_q1o56")
@@ -19,7 +20,7 @@ height = 60.0
 [node name="Cylinder Map" type="Node3D" unique_id=1029750433]
 script = ExtResource("1_q48st")
 platform_scene = ExtResource("2_q1o56")
-collectable_scenes = Array[PackedScene]([ExtResource("3_shrax"), ExtResource("4_ih5fc")])
+collectable_scenes = Array[PackedScene]([ExtResource("3_shrax"), ExtResource("4_ih5fc"), ExtResource("5_ih5fc")])
 flipping_condition_value = 0.05
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=961004207]
