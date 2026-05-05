@@ -16,3 +16,9 @@ mesh = SubResource("SphereMesh_f60y1")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=8808803]
 shape = SubResource("SphereShape3D_v0iea")
+
+[node name="Collectable Use Timer" type="Timer" parent="." unique_id=1926925412]
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="Collectable Use Timer" to="." method="_on_collectable_use_timer_timeout"]

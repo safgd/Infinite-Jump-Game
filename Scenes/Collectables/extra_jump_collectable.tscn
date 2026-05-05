@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://8w2kj46kbuh"]
+
+[ext_resource type="PackedScene" uid="uid://bk7tfhxun24c0" path="res://Scenes/Collectables/collectable_template.tscn" id="1_yqa53"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vqeoi"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ixgh3"]
+
+[node name="Extra Jump Collectable" unique_id=1373891268 instance=ExtResource("1_yqa53")]
+type = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=446615466]
+shape = SubResource("BoxShape3D_vqeoi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1" unique_id=2088736451]
+mesh = SubResource("BoxMesh_ixgh3")

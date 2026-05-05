@@ -8,16 +8,22 @@ extends CharacterBody3D
 @export var jump_velocity = 4.5
 var started: bool = false
 @export var gravity_force: float = -12
-var gravity: Vector3
+@export var lowered_gravity_force: float = -6
 
-func _ready() -> void:
-	gravity = Vector3(0, gravity_force, 0)
+var usable_collectable: Collectable.Type
+var active_collectable: Collectable.Type
+@onready var collectable_use_timer: Timer = $"Collectable Use Timer"
+
+
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	
 	if not is_on_floor():
-		velocity += gravity * delta
+		if active_collectable == Collectable.Type.LOW_GRAVITY:
+			velocity += Vector3(0, lowered_gravity_force, 0) * delta
+		else:
+			velocity += Vector3(0, gravity_force, 0) * delta
 	elif started:
 		#jump()
 		pass
@@ -28,9 +34,16 @@ func _physics_process(delta: float) -> void:
 		started = true
 		if base:
 			base.call_deferred("queue_free")
-	# for debugging
-	elif Input.is_action_just_pressed("ui_accept"):
-		jump()
+	
+	if Input.is_action_just_pressed("ui_accept") and usable_collectable != Collectable.Type.EMPTY:
+		match usable_collectable:
+			Collectable.Type.EXTRA_JUMP:
+				jump()
+			Collectable.Type.LOW_GRAVITY:
+				active_collectable = Collectable.Type.LOW_GRAVITY
+				collectable_use_timer.start()
+				
+		usable_collectable = Collectable.Type.EMPTY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -40,10 +53,15 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		map_to_rotate.rotation_degrees.y +=  -direction.x * speed * delta
 
-
-
 	move_and_slide()
 	
 
 func jump()->void:
 	velocity.y = jump_velocity
+
+func pickup_collectable(type: Collectable.Type)->void:
+	usable_collectable = type
+
+
+func _on_collectable_use_timer_timeout() -> void:
+	active_collectable = Collectable.Type.EMPTY

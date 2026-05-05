@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://cme4kru38noax"]
+
+[ext_resource type="PackedScene" uid="uid://bk7tfhxun24c0" path="res://Scenes/Collectables/collectable_template.tscn" id="1_xio22"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_bfkqq"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_kkegf"]
+radius = 0.8481587
+
+[node name="Low Gravity Collectable" unique_id=1373891268 instance=ExtResource("1_xio22")]
+type = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="0" unique_id=714412373]
+mesh = SubResource("PrismMesh_bfkqq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1" unique_id=1143136356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0999797, 0)
+shape = SubResource("SphereShape3D_kkegf")
