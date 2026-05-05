@@ -20,5 +20,8 @@ mesh = SubResource("BoxMesh_ndhib")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 shape = SubResource("BoxShape3D_tvo2v")
 
+[node name="Collectable Spawn Slot" type="Marker3D" parent="." unique_id=296592877]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.047984004, 0.6213157, 5.848561)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

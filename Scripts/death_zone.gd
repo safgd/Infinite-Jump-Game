@@ -12,6 +12,8 @@ func _on_body_entered(body: Node3D) -> void:
 func _on_area_entered(area: Area3D) -> void:
 	if area is Platform:
 		(area as Platform).destroy()
+	elif area is Collectable:
+		area.call_deferred("queue_free")
 
 func _on_death_screen_finished()->void:
 	print("Game Over")

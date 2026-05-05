@@ -6,6 +6,7 @@ var move_tween: Tween
 @export var loop_duration: float = 2.0
 @export var breakable: bool = false
 var parent_map: Map
+@onready var collectable_spawn_slot: Marker3D = $"Collectable Spawn Slot"
 
 func start_moving()->void:
 	move_tween = get_tree().create_tween().set_loops()

@@ -5,8 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bee4jed1q385p" path="res://Scenes/player.tscn" id="3_wrm1d"]
 [ext_resource type="PackedScene" uid="uid://dbnunemynkeps" path="res://Scenes/world_reshift_zone.tscn" id="4_3dryh"]
 [ext_resource type="PackedScene" uid="uid://bxts7e6b3p2jk" path="res://Scenes/game_ui.tscn" id="5_wowpa"]
-[ext_resource type="PackedScene" uid="uid://8w2kj46kbuh" path="res://Scenes/Collectables/extra_jump_collectable.tscn" id="6_1l0tm"]
-[ext_resource type="PackedScene" uid="uid://cme4kru38noax" path="res://Scenes/Collectables/low_gravity_collectable.tscn" id="7_v158k"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3dryh"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -37,12 +35,6 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 shadow_enabled = true
 
 [node name="Cylinder Map" parent="." unique_id=1029750433 instance=ExtResource("1_qxrlw")]
-
-[node name="Extra Jump Collectable" parent="Cylinder Map" unique_id=1373891268 instance=ExtResource("6_1l0tm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5301871, 5.2300477, 5.6999598)
-
-[node name="Low Gravity Collectable" parent="Cylinder Map" unique_id=416615428 instance=ExtResource("7_v158k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.117497, 5.2300477, 5.6999598)
 
 [node name="Base" type="StaticBody3D" parent="." unique_id=493004377]
 
